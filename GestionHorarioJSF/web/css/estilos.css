@@ -1,0 +1,39 @@
+.navbar-color, dropdown-item{
+   background-color: #FDECEC;
+   
+}
+.header{
+    height: 50vh;
+    
+    background-image : linear-gradient(to right bottom, rgba(126,213,111, 0.8), rgba(40,180,131,0.8)), url(../imagenes/inicio.jpg) ;
+    /*linear-gradient(to right bottom, rgba(126,213,111, 0.8), rgba(40,180,131,0.8))*/
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 84%, 0% 100%);
+    
+}
+.titulo, .subtitulo{
+   text-align: center;
+   text-transform: uppercase;
+   
+}
+.titulo{
+    font-size: 46px;
+    
+}
+.subtitulo{
+    font-size: 13px;
+}
+.footer{
+    background-color: black;
+    color:white;
+    width:100%;
+    text-align: center;  
+}
+.footer ul{
+    list-style:none;
+}
+h2{
+    text-transform: uppercase;
+    color:green;
+    
+}
