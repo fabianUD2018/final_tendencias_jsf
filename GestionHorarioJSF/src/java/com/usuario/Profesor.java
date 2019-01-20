@@ -25,7 +25,7 @@ public class Profesor extends Usuario implements Serializable {
      * Creates a new instance of Profesor
      */
     private String detalles;
-    private String otraCosa;
+    private String costoHora;
     private boolean sesion;
     private ArrayList<Horario> horarios;
 
@@ -58,12 +58,12 @@ public class Profesor extends Usuario implements Serializable {
         this.detalles = detalles;
     }
 
-    public String getOtraCosa() {
-        return otraCosa;
+    public String getCostoHora() {
+        return costoHora;
     }
 
-    public void setOtraCosa(String otraCosa) {
-        this.otraCosa = otraCosa;
+    public void setCostoHora(String costoHora) {
+        this.costoHora = costoHora;
     }
 
     public void addHorario(Horario temp) {
@@ -71,9 +71,6 @@ public class Profesor extends Usuario implements Serializable {
     }
 
     public boolean comprobarColision(Horario h) {
-        for (Horario t : horarios) {
-            System.out.println("hora: " + t.getId());
-        }
 
         String dia = h.getDia();
         LocalTime inicio = LocalTime.parse(h.getHoraInicio());
@@ -83,51 +80,33 @@ public class Profesor extends Usuario implements Serializable {
         boolean comprobacion = false;
         if (inicio.isAfter(fin) || inicio.equals(fin)) {
             comprobacion = true;
-            System.out.println("comprobacion: " + comprobacion);
+     
         } else {
             for (Horario t : horarios) {
                 if (t.getDia().equals(dia) && t.getId()!=h.getId()) {
-                    System.out.println("----------");
-                    System.out.println(t.getDia());
-                    System.out.println(dia);
-                    System.out.println("----------");
+                 
                     //inicio es la nueva hora de inicio
                     //t es la hora del que ya poseo
                     if (inicio.isBefore(LocalTime.parse(t.getHoraFin())) && inicio.isAfter(LocalTime.parse(t.getHoraInicio()) )) {
-                        System.out.println("***" + inicio.isBefore(LocalTime.parse(t.getHoraFin())));
                         System.out.println(inicio);
                         System.out.println(t.getHoraInicio());
-                        System.out.println("***" + inicio.equals(LocalTime.parse(t.getHoraInicio())));
+                       
                         comprobacion = true;
-                        System.out.println("xd");
                         //falta cundo se envuelve
                         break;
                     }else if (fin.isBefore(LocalTime.parse(t.getHoraFin())) && fin.isAfter(LocalTime.parse(t.getHoraInicio()) ) ) {
-                        System.out.println("***" + inicio.isBefore(LocalTime.parse(t.getHoraFin())));
-                        System.out.println(inicio);
-                        System.out.println(t.getHoraInicio());
-                        System.out.println("***" + inicio.equals(LocalTime.parse(t.getHoraInicio())));
+                    
                         comprobacion = true;
-                        System.out.println("xd");
-                        //falta cundo se envuelve
                         break;
                     }else if (fin.isAfter(LocalTime.parse(t.getHoraFin())) && inicio.isBefore(LocalTime.parse(t.getHoraInicio()) ) ) {
-                        System.out.println("***" + inicio.isBefore(LocalTime.parse(t.getHoraFin())));
-                        System.out.println(inicio);
-                        System.out.println(t.getHoraInicio());
-                        System.out.println("***" + inicio.equals(LocalTime.parse(t.getHoraInicio())));
+                      
                         comprobacion = true;
-                        System.out.println("xd");
-                        //falta cundo se envuelve
+                    
                         break;
                     }else if (fin.equals(LocalTime.parse(t.getHoraFin())) && inicio.equals(LocalTime.parse(t.getHoraInicio()) ) ) {
-                        System.out.println("***" + inicio.isBefore(LocalTime.parse(t.getHoraFin())));
-                        System.out.println(inicio);
-                        System.out.println(t.getHoraInicio());
-                        System.out.println("***" + inicio.equals(LocalTime.parse(t.getHoraInicio())));
+                       
                         comprobacion = true;
-                        System.out.println("xd");
-                        //falta cundo se envuelve
+                      
                         break;
                     }
                 }

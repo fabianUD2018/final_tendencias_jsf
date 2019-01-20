@@ -59,7 +59,7 @@ public class GestorBaseDatos {
     }
 
     public void executeQ(String sql) {
-        ResultSet rs = null;
+        
 
         try {
 
@@ -81,8 +81,7 @@ public class GestorBaseDatos {
     public ResultSet read(String sql) {
         ResultSet rs = null;
         try {
-            Statement temp = myConn.createStatement();
-            rs = temp.executeQuery(sql);
+            rs = st.executeQuery(sql);
 
         } catch (SQLException ex) {
             Logger.getLogger(GestorBaseDatos.class.getName()).log(Level.SEVERE, null, ex);

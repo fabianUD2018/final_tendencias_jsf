@@ -22,7 +22,7 @@ public class Cliente extends Usuario implements Serializable {
 
      private String detalles;
      private boolean sesion;
-     private ArrayList<Horario> horarios;
+     
      
      /**
      * Creates a new instance of Cliente
