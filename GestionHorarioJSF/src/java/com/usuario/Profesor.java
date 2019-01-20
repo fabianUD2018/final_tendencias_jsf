@@ -88,8 +88,6 @@ public class Profesor extends Usuario implements Serializable {
                     //inicio es la nueva hora de inicio
                     //t es la hora del que ya poseo
                     if (inicio.isBefore(LocalTime.parse(t.getHoraFin())) && inicio.isAfter(LocalTime.parse(t.getHoraInicio()) )) {
-                        System.out.println(inicio);
-                        System.out.println(t.getHoraInicio());
                        
                         comprobacion = true;
                         //falta cundo se envuelve

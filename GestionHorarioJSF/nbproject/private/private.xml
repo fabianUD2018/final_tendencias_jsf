@@ -7,10 +7,11 @@
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/web/webpages/HomeProfesor.xhtml</file>
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/modelo/gestion/GestorBaseDatos.java</file>
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/usuario/RegistroController.java</file>
-            <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/usuario/Cliente.java</file>
+            <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/web/index.xhtml</file>
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/web/webpages/EditHorary.xhtml</file>
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/cliente/HomeProfesorController.java</file>
             <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/cliente/Horario.java</file>
+            <file>file:/C:/Users/fcher/Dropbox/NetBeansProjects/git/GestionHorarioJSF/src/java/com/usuario/Usuario.java</file>
         </group>
     </open-files>
 </project-private>
