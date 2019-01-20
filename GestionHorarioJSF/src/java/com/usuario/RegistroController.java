@@ -93,4 +93,5 @@ public class RegistroController implements Serializable {
         }
         return null;
     }
+       
 }

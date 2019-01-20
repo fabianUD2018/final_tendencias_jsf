@@ -20,7 +20,7 @@ public class Horario implements Serializable {
     /**
      * Creates a new instance of Horario
      */
-    private String id;
+    private int  id;
     private String dia;
     private String horaInicio;
     private String horaFin;
@@ -29,14 +29,18 @@ public class Horario implements Serializable {
     }
 
     public Horario(int id, String dia, String inicio, String fin) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.id= id;
+        this.dia =dia;
+        this.horaInicio= inicio;
+        this.horaFin=fin;
+        
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -63,5 +67,7 @@ public class Horario implements Serializable {
     public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
-    
+    public Horario clone(){
+        return new Horario(id, dia, horaInicio, horaFin);
+    }
 }

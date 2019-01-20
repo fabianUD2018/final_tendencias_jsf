@@ -5,9 +5,11 @@
  */
 package com.usuario;
 
+import com.cliente.Horario;
 import javax.inject.Named;  
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,13 +22,15 @@ public class Cliente extends Usuario implements Serializable {
 
      private String detalles;
      private boolean sesion;
-    /**
+     private ArrayList<Horario> horarios;
+     
+     /**
      * Creates a new instance of Cliente
      */
     public Cliente() {
         sesion =false;
     }
-
+  
     public boolean isSesion() {
         return sesion;
     }

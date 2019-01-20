@@ -2,11 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:event type="postAddToView"  listener="#{homeProfesorController.cargarHorarios(profesor)}"></f:event>
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        ${profesor.sesion}
         <c:if test = "${profesor.sesion}">
             <h:form>
                 <div class="form-group">
@@ -18,7 +21,7 @@
                     <h:inputText value ="#{horario.dia}" id ="dia"></h:inputText>
                 </div>
                 <div class="form-group">
-                <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+                    <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
 
                     <h:inputText value ="#{horario.horaInicio}" id ="horaInicio"></h:inputText>
                 </div>
@@ -27,12 +30,45 @@
                     <h:inputText value ="#{horario.horaFin}" id ="horaFin"></h:inputText>
                 </div>
                 <div class="form-group">
-                    <h:commandButton class="btn btn-primary" value ="Registrar Horario" action ="#{horarioController.insertarHorario(horario)}"></h:commandButton>
+                    <h:commandButton class="btn btn-primary" value ="Registrar Horario" action ="#{homeProfesorController.insertarHorario(horario, profesor)}"></h:commandButton>
                 </div>
 
             </h:form>
+
+            
+            <h:form>
+            <h:dataTable value ="${profesor.horarios}" var="h">
+                <h:column>
+                <f:facet name="header">dia</f:facet>
+                        ${h.dia}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Hora inicio</f:facet>
+                        ${h.horaInicio}
+                    
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Hora fin</f:facet>
+                        ${h.horaFin}
+                </h:column>
+                <h:column >
+                    <f:facet name="header"> Borrar</f:facet>
+                    <h:commandButton value ="Borrar" actionListener="#{homeProfesorController.borrarHorario(h)}"></h:commandButton>
+                </h:column>
+                 <h:column >
+                    <f:facet name="header"> editar</f:facet>
+                    <h:commandButton value ="Editar" action="#{homeProfesorController.editar(h)}"></h:commandButton>
+
+                </h:column>
+
+
+            </h:dataTable>
+                </h:form>
         </c:if>
-        <h:outputLabel value ="Usted aun no inicia sesion, inicie sesion por favor"></h:outputLabel>
+        <c:if test="${!profesor.sesion}">
+            <h:outputLabel value ="Usted aun no inicia sesion, inicie sesion por favor"></h:outputLabel>
+        </c:if>
+        
     </h:body>
 </html>
 
