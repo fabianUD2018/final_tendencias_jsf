@@ -45,10 +45,10 @@ public class GestorBaseDatos {
 
     public void realizaConexion() {
 
-        String urlDatabase = "jdbc:postgresql://127.0.0.1/tend";
+        String urlDatabase = "jdbc:postgresql://127.0.0.1/tend1";
         try {
             Class.forName("org.postgresql.Driver");
-            myConn = DriverManager.getConnection(urlDatabase, "postgres", "Hmdemo123");
+            myConn = DriverManager.getConnection(urlDatabase, "postgres", "123456");
             st = myConn.createStatement();
 
         } catch (Exception e) {

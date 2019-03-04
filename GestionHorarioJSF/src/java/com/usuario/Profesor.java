@@ -31,6 +31,7 @@ public class Profesor extends Usuario implements Serializable {
 
     public Profesor() {
         sesion = false;
+        costoHora="500";
         horarios = new ArrayList<Horario>();
     }
 
