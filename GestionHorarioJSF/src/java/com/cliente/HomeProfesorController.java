@@ -6,6 +6,7 @@
 package com.cliente;
 
 import com.modelo.gestion.GestorBaseDatos;
+import com.usuario.Cliente;
 import com.usuario.Profesor;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -32,9 +33,11 @@ public class HomeProfesorController implements Serializable {
      */
     private ArrayList<Horario> horarios;
     private GestorBaseDatos gb;
+    private ArrayList<Clase> clases;
 
     public HomeProfesorController() {
         horarios = new ArrayList<>();
+        clases = new ArrayList<>();
         gb = GestorBaseDatos.obtenerGestor();
         gb.realizaConexion();
     }
@@ -46,16 +49,18 @@ public class HomeProfesorController implements Serializable {
                     + "(" + h.getId() + ", '" + h.getDia() + "', '" + h.getHoraInicio() + "', '" + h.getHoraFin() + "')";
             System.out.println(sql);
             gb.executeQ(sql);
-            sql = "insert into profesorhorario values(" + h.getId() + "," + p.getCedula() + ")";
+            sql = "insert into profesorhorario values(" + h.getId() + "," + p.getCedula()+"1" + ")";
             gb.executeQ(sql);
         }
     }
+    
+    
 
     public void cargarHorarios(Profesor p) {
         p.getHorarios().clear();
-        if (p.isSesion()) {
+        if (p.isSesion()) { 
             String sql = "select h.id_horario, h.dia, h.hora_inicio, h.hora_fin from horario h, profesorhorario ph, profesor p"
-                    + " where h.id_horario = ph.id_horario and p.id_profesor = " + p.getCedula();
+                    + " where h.id_horario = ph.id_horario and p.id_profesor = " + p.getCedula()+"1";
             ResultSet st = gb.read(sql);
             try {
                 while (st.next()) {
@@ -72,6 +77,63 @@ public class HomeProfesorController implements Serializable {
         }
     }
 
+    public void cargarClases(Profesor p){
+        if (p.isSesion()) {
+            String sql = "select * from clase, profesor where clase.id_profesor=profesor.id_profesor and profesor.id_profesor="+p.getCedula()+"1";
+            ResultSet st = gb.read(sql);
+            ResultSet st2;
+            try {
+                while (st.next()) {
+                    Clase temp = new Clase();
+                    temp.setProfesor(p);
+                    temp.setId(st.getInt(1));
+                    sql ="select  nombre from materia where id_materia='"+st.getString(4)+"'";
+                    st2 = gb.read(sql);
+                    temp.setMateria(st2.getString(1));
+                    temp.setFecha(st.getString(5));
+                    temp.setHora_inicio(st.getString(6));
+                    temp.setHora_fin(st.getString(7));
+                    temp.setDetalles(st.getString(8));
+                    temp.setReserva(st.getString(9));
+                    temp.setColegio(st.getString(10));
+                    temp.setNombre_alumno(st.getString(11));
+                    temp.setDireccion(st.getString(12));
+                    
+                    Cliente tempc= new Cliente();
+                    sql ="select * from cliente, persona where cliente.id_cedula=persona.id_cedula and id_cliente='"+st.getString(3)+"'";
+                    st2 = gb.read(sql);
+                    tempc.setCedula(st2.getInt(2));
+                    tempc.setDetalles(st2.getString(3));
+                    tempc.setNombre(st2.getString(5));
+                    tempc.setEdad(st2.getInt(8));
+                    tempc.setCelular(st2.getInt(6));
+
+                    temp.setCliente(tempc);
+                }   
+            } catch (SQLException ex) {
+                Logger.getLogger(HomeProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public String aceptarClase(Clase c, Profesor p){
+        String sql="update clase set reserva='Aceptada' where id_clase="+c.getId();
+        gb.executeQ(sql);
+        return "GestionClasesProfesor?faces-redirect=true";
+    }
+    
+    public String rechazarClase(Clase c, Profesor p){
+        String sql="update clase set reserva='Rechaza' where id_clase="+c.getId();
+        gb.executeQ(sql);
+        return "GestionClasesProfesor?faces-redirect=true";
+    }
+    
+    public String cancelarClase(Clase c, Profesor p){
+        String sql="update clase set reserva='Cancelada' where id_clase="+c.getId();
+        gb.executeQ(sql);
+        return "GestionClasesProfesor?faces-redirect=true";
+    }
+    
     public void borrarHorario(Horario h) {
         gb.executeQ("delete from profesorhorario h  where h.id_horario = " + h.getId());
 
