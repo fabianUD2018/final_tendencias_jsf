@@ -78,18 +78,22 @@ public class HomeProfesorController implements Serializable {
     }
 
     public void cargarClases(Profesor p){
+        clases.clear();
         if (p.isSesion()) {
             String sql = "select * from clase, profesor where clase.id_profesor=profesor.id_profesor and profesor.id_profesor="+p.getCedula()+"1";
+            System.out.println(sql);
+            GestorBaseDatos gb2= new GestorBaseDatos();
+            GestorBaseDatos gb3= new GestorBaseDatos();
+            gb2.realizaConexion();
+            gb3.realizaConexion();
             ResultSet st = gb.read(sql);
             ResultSet st2;
+            ResultSet st3;
             try {
-                while (st.next()) {
+                while (st.next()){
                     Clase temp = new Clase();
                     temp.setProfesor(p);
-                    temp.setId(st.getInt(1));
-                    sql ="select  nombre from materia where id_materia='"+st.getString(4)+"'";
-                    st2 = gb.read(sql);
-                    temp.setMateria(st2.getString(1));
+                    temp.setId(st.getInt(1));           
                     temp.setFecha(st.getString(5));
                     temp.setHora_inicio(st.getString(6));
                     temp.setHora_fin(st.getString(7));
@@ -98,18 +102,29 @@ public class HomeProfesorController implements Serializable {
                     temp.setColegio(st.getString(10));
                     temp.setNombre_alumno(st.getString(11));
                     temp.setDireccion(st.getString(12));
+                    String idCliente = st.getString(3);
                     
+                    sql ="select  nombre from materia where id_materia='"+st.getString(4)+"'";
+                    System.out.println(sql);
+                    st2 = gb2.read(sql);
+                    st2.next();
+                    temp.setMateria(st2.getString(1));
+
                     Cliente tempc= new Cliente();
-                    sql ="select * from cliente, persona where cliente.id_cedula=persona.id_cedula and id_cliente='"+st.getString(3)+"'";
-                    st2 = gb.read(sql);
-                    tempc.setCedula(st2.getInt(2));
-                    tempc.setDetalles(st2.getString(3));
-                    tempc.setNombre(st2.getString(5));
-                    tempc.setEdad(st2.getInt(8));
-                    tempc.setCelular(st2.getInt(6));
+                    sql ="select * from cliente, persona where cliente.id_cedula=persona.id_cedula and id_cliente='"+idCliente+"'";
+                    st3 = gb3.read(sql);
+                    st3.next();
+                    System.out.println(sql);
+                    tempc.setCedula(st3.getInt(2));
+                    tempc.setDetalles(st3.getString(3));
+                    tempc.setNombre(st3.getString(5));
+                    tempc.setEdad(st3.getInt(8));
+                    tempc.setCelular(st3.getInt(6));
 
                     temp.setCliente(tempc);
-                }   
+                    
+                    clases.add(temp);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(HomeProfesorController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -123,14 +138,20 @@ public class HomeProfesorController implements Serializable {
     }
     
     public String rechazarClase(Clase c, Profesor p){
-        String sql="update clase set reserva='Rechaza' where id_clase="+c.getId();
-        gb.executeQ(sql);
+        if(c.isSolicitada()){
+            String sql="update clase set reserva='Rechaza' where id_clase="+c.getId();
+            gb.executeQ(sql);
+            return "GestionClasesProfesor?faces-redirect=true";
+        }
         return "GestionClasesProfesor?faces-redirect=true";
     }
     
     public String cancelarClase(Clase c, Profesor p){
-        String sql="update clase set reserva='Cancelada' where id_clase="+c.getId();
-        gb.executeQ(sql);
+        if(c.isSolicitada()){
+            String sql="update clase set reserva='Cancelada' where id_clase="+c.getId();
+            gb.executeQ(sql);
+            return "GestionClasesProfesor?faces-redirect=true";
+        }
         return "GestionClasesProfesor?faces-redirect=true";
     }
     
@@ -157,6 +178,13 @@ public class HomeProfesorController implements Serializable {
         }
         System.out.println("hubo error XD");
         return "HomeProfesor?faces-redirect=true";
+    }
+
+    /**
+     * @return the clases
+     */
+    public ArrayList<Clase> getClases() {
+        return clases;
     }
 
 }

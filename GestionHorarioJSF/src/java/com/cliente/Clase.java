@@ -10,6 +10,7 @@ import com.usuario.Profesor;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+
 /**
  *
  * @author leml
@@ -18,43 +19,47 @@ import java.io.Serializable;
 @Named(value = "clase")
 @SessionScoped
 public class Clase implements Serializable {
-   private int id;
-   private String materia;
-   private String colegio;
-   private String detalles;
-   private String fecha;
-   private int grado;
-   private String hora_inicio;
-   private String hora_fin;
-   private String nombre_alumno;
-   private Profesor profesor;
-   private Cliente cliente;
-   private String reserva;
-   private String direccion;
 
-   public Clase (){
-   
-   }
-   public Clase (int aId,String aMateria, String aColegio, String aDetalles, String aFecha, String aHora_inicio, String aHora_fin, String aNombre_alumno,int aGrado, Cliente aCliente, Profesor aProfesor, String aDireccion){
-       id =aId;
-       materia=aMateria;
-       colegio=aColegio;
-       detalles=aDetalles;
-       fecha=aFecha;
-       grado=aGrado;
-       hora_inicio=aHora_inicio;
-       hora_fin= aHora_fin;
-       nombre_alumno=aNombre_alumno;
-       cliente= aCliente;
-       profesor=aProfesor;
-       reserva="solicitada";
-       direccion=aDireccion;
-   }
+    private int id;
+    private String materia;
+    private String colegio;
+    private String detalles;
+    private String fecha;
+    private int grado;
+    private String hora_inicio;
+    private String hora_fin;
+    private String nombre_alumno;
+    private Profesor profesor;
+    private Cliente cliente;
+    private String reserva;
+    private String direccion;
+    
+    public Clase() {
+        
+    }
+
+    public Clase(int aId, String aMateria, String aColegio, String aDetalles, String aFecha, String aHora_inicio, String aHora_fin, String aNombre_alumno, int aGrado, Cliente aCliente, Profesor aProfesor, String aDireccion) {
+        id = aId;
+        materia = aMateria;
+        colegio = aColegio;
+        detalles = aDetalles;
+        fecha = aFecha;
+        grado = aGrado;
+        hora_inicio = aHora_inicio;
+        hora_fin = aHora_fin;
+        nombre_alumno = aNombre_alumno;
+        cliente = aCliente;
+        profesor = aProfesor;
+        reserva = "solicitada";
+        direccion = aDireccion;
+    }
+
     /**
      * @return the materia
      */
     public String getMateria() {
         return materia;
+        
     }
 
     /**
@@ -231,6 +236,11 @@ public class Clase implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-   
-   
+    
+    public boolean isSolicitada() {
+        if (reserva.equals("solicitada")){
+            return true;
+        }
+        return false;
+    }
 }
