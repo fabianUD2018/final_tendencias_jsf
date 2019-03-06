@@ -15,7 +15,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <h:body>
-        ${cliente.sesion}
+        
         <c:if test = "${cliente.sesion}">
             <h:form>
                 <div class="form-group">
@@ -37,10 +37,31 @@ and open the template in the editor.
                 </div>
                 <div class="form-group">
                     <h:outputLabel value ="Materia"></h:outputLabel>
-                    <h:inputText value ="#{mate.nombre}" id ="nombre"></h:inputText>
+                    <h:inputText value ="#{clase.materia}" id ="materia"></h:inputText>
                 </div>
                 <div class="form-group">
-                    <h:commandButton class="btn btn-primary" value ="Registrar Clase" action ="#{homeClienteController.crearClase(profesor, horario, mate)}"></h:commandButton>
+                    <h:outputLabel value ="Fecha"></h:outputLabel>
+                    <h:inputText value ="#{clase.fecha}" id ="fecha"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Detalles"></h:outputLabel>
+                    <h:inputText value ="#{clase.detalles}" id ="detalles"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Colegio"></h:outputLabel>
+                    <h:inputText value ="#{clase.colegio}" id ="colegio"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Nombre del alumno"></h:outputLabel>
+                    <h:inputText value ="#{clase.nombre_alumno}" id ="alumno"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Dirección"></h:outputLabel>
+                    <h:inputText value ="#{clase.direccion}" id ="direccion"></h:inputText>
+                </div>
+                <div class="form-group">
+                    #{clase.setProfesor(profesor)}
+                    <h:commandButton class="btn btn-primary" value ="Registrar Clase" action ="#{homeClienteController.crearClase(horario, clase, profesor, cliente)}"></h:commandButton>
                 </div>
 
             </h:form>
