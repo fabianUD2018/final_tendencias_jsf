@@ -1,7 +1,5 @@
 package com.cliente;
 
-import com.usuario.Profesor;
-import java.io.Serializable;
 
 import com.modelo.gestion.GestorBaseDatos;
 import com.usuario.Cliente;
@@ -11,12 +9,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.context.FacesContext;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -32,7 +27,6 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class HomeClienteController implements Serializable {
     
-    private ArrayList<Horario> horarios;
     private GestorBaseDatos gb;
     private ArrayList<Clase> clases;
 
@@ -133,6 +127,10 @@ public class HomeClienteController implements Serializable {
             Logger.getLogger(HomeClienteController.class.getName()).log(Level.SEVERE, null, ex);
             return 0;
         }
+    }
+    
+    public void cargarClases(Cliente c){
+        
     }
     
     
