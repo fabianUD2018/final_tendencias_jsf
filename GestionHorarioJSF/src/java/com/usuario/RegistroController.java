@@ -115,7 +115,7 @@ public class RegistroController implements Serializable {
         try {
             if (st.next()){
                  c.setSesion(true);
-                 return "index";//cambiar por donde deba redirigir al cliente
+                 return "webpages/HomeCliente";//cambiar por donde deba redirigir al cliente
             }else{
                 return "index";
             }   

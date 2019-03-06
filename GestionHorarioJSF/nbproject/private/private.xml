@@ -5,17 +5,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/web/webpages/HomeProfesor.xhtml</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/web/index.xhtml</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/usuario/Cliente.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/modelo/gestion/GestorBaseDatos.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/web/webpages/EditHorary.xhtml</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/cliente/HomeProfesorController.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/usuario/RegistroController.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/usuario/Usuario.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/usuario/Profesor.java</file>
-            <file>file:/C:/Users/luigi/Documents/GitHub/final_tendencias_jsf/GestionHorarioJSF/src/java/com/cliente/Horario.java</file>
+            <file>file:/C:/final_tendencias/final_tendencias_jsf/GestionHorarioJSF/web/webpages/GestionClasesProfesor.xhtml</file>
+            <file>file:/C:/final_tendencias/final_tendencias_jsf/GestionHorarioJSF/web/webpages/HomeCliente.xhtml</file>
+            <file>file:/C:/final_tendencias/final_tendencias_jsf/GestionHorarioJSF/src/java/com/cliente/HomeProfesorController.java</file>
+            <file>file:/C:/final_tendencias/final_tendencias_jsf/GestionHorarioJSF/src/java/com/cliente/HomeClienteController.java</file>
         </group>
     </open-files>
 </project-private>
