@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <head>
+        <title>Cliente</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        ${cliente.sesion}
+        <c:if test = "${cliente.sesion}">
+            <h:form>
+                <div class="form-group">
+                    <h:outputLabel value ="Nombre del profesor"></h:outputLabel>
+                    <h:inputText value ="#{profesor.cedula}" id ="id"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Dia de la semana"></h:outputLabel>
+                    <h:inputText value ="#{horario.dia}" id ="dia"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+
+                    <h:inputText value ="#{horario.horaInicio}" id ="horaInicio"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Hora fin lo mismo del anterior"></h:outputLabel>
+                    <h:inputText value ="#{horario.horaFin}" id ="horaFin"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value ="Materia"></h:outputLabel>
+                    <h:inputText value ="#{mate.nombre}" id ="nombre"></h:inputText>
+                </div>
+                <div class="form-group">
+                    <h:commandButton class="btn btn-primary" value ="Registrar Clase" action ="#{homeClienteController.crearClase(profesor, horario, mate)}"></h:commandButton>
+                </div>
+
+            </h:form>
+
+        </c:if>
+        <c:if test="${!cliente.sesion}">
+            <h:outputLabel value ="Usted aun no inicia sesion, inicie sesion por favor"></h:outputLabel>
+        </c:if>
+        
+    </h:body>
+</html>
