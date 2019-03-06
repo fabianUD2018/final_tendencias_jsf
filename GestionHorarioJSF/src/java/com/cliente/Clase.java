@@ -243,4 +243,11 @@ public class Clase implements Serializable {
         }
         return false;
     }
+    
+    public boolean isAceptada() {
+        if (reserva.equals("aceptada")){
+            return true;
+        }
+        return false;
+    }
 }

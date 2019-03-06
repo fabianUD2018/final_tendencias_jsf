@@ -132,14 +132,16 @@ public class HomeProfesorController implements Serializable {
     }
     
     public String aceptarClase(Clase c, Profesor p){
-        String sql="update clase set reserva='Aceptada' where id_clase="+c.getId();
+        String sql="update clase set reserva='aceptada' where id_clase="+c.getId();
         gb.executeQ(sql);
         return "GestionClasesProfesor?faces-redirect=true";
     }
     
+
+    
     public String rechazarClase(Clase c, Profesor p){
         if(c.isSolicitada()){
-            String sql="update clase set reserva='Rechaza' where id_clase="+c.getId();
+            String sql="update clase set reserva='rechazada' where id_clase="+c.getId();
             gb.executeQ(sql);
             return "GestionClasesProfesor?faces-redirect=true";
         }
@@ -147,12 +149,32 @@ public class HomeProfesorController implements Serializable {
     }
     
     public String cancelarClase(Clase c, Profesor p){
-        if(c.isSolicitada()){
-            String sql="update clase set reserva='Cancelada' where id_clase="+c.getId();
+        if(c.isAceptada()){
+            String sql="update clase set reserva='cancelada' where id_clase="+c.getId();
             gb.executeQ(sql);
             return "GestionClasesProfesor?faces-redirect=true";
         }
         return "GestionClasesProfesor?faces-redirect=true";
+    }
+    
+    public ArrayList<Clase> getSolicitadas(){
+        ArrayList<Clase> clasesAsignadas= new ArrayList();
+        for (Clase clase : clases){
+            if(clase.isSolicitada()){
+            clasesAsignadas.add(clase);
+            }
+        }
+        return clasesAsignadas;
+    }
+    
+    public ArrayList<Clase> getAceptadas(){
+        ArrayList<Clase> clasesAceptadas= new ArrayList();
+        for (Clase clase : clases){
+            if(clase.isAceptada()){
+            clasesAceptadas.add(clase);
+            }
+        }
+        return clasesAceptadas;
     }
     
     public void borrarHorario(Horario h) {
