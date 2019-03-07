@@ -89,10 +89,10 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-item"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                <h:link class="dropdown-item"  outcome  ="index">                    
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Salir
+                </h:link>                
               </div>
             </li>
 
@@ -168,12 +168,15 @@
                                     </h:column>
                                     <h:column >
                                         <f:facet name="header"> Borrar</f:facet>
+                                        <!-- Boton bonito pero bugueado
                                          <h:link class="btn btn-danger btn-icon-split" outcome  ="#{homeProfesorController.borrarHorario(h)}">
                                             <span class="icon text-white-50">
                                               <i class="fas fa-trash"></i>
                                             </span>
-                                            <span class="text">Borrar</span>
-                                        </h:link>                                        
+                                            <span class="text">borrar</span>
+                                        </h:link>     
+                                         -->
+                                         <h:commandButton value ="Borrar" action="#{homeProfesorController.borrarHorario(h)}"></h:commandButton>
                                     </h:column>
                                      <h:column >
                                         <f:facet name="header"> editar</f:facet>
@@ -184,6 +187,7 @@
                                             </span>
                                             <span class="text">Editar</span>
                                         </h:link>
+                                        
                                     </h:column>
                                 </h:dataTable>
                             </h:form>

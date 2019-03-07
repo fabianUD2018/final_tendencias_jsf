@@ -182,7 +182,7 @@ public class HomeProfesorController implements Serializable {
         gb.executeQ("delete from profesorhorario h  where h.id_horario = " + h.getId());
 
         gb.executeQ("delete from horario h  where h.id_horario = " + h.getId() );
-        return "HomeProfesor?faces-redirect=true";
+        return "index?faces-redirect=true";
     }
 
     public String editar(Horario h) {
