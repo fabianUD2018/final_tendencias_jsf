@@ -21,12 +21,13 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
+      <h:link class="sidebar-brand d-flex align-items-center justify-content-center"  outcome  ="index">
+          <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Leherer</div>
-      </a>
+      </h:link>
+      
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -38,8 +39,16 @@
       <!-- Nav Item - Charts -->
      
       <li class="nav-item">  
-        <h:link class="nav-link"  outcome  ="RegistroCliente"><i class="fas fa-calendar-alt"></i><span>  Horarios</span></h:link>
-            
+        <h:link class="nav-link"  outcome  ="HomeProfesor">
+            <i class="fas fa-calendar-alt"></i>
+            <span>  Horarios</span>
+        </h:link>            
+      </li>
+      <li class="nav-item">  
+        <h:link class="nav-link"  outcome  ="GestionClasesProfesor">
+            <i class="far fa-plus-square"></i>
+            <span>  Clases</span>
+        </h:link>            
       </li>
       
 
@@ -159,12 +168,22 @@
                                     </h:column>
                                     <h:column >
                                         <f:facet name="header"> Borrar</f:facet>
-                                        <h:commandButton value ="Borrar" action="#{homeProfesorController.borrarHorario(h)}"></h:commandButton>
+                                         <h:link class="btn btn-danger btn-icon-split" outcome  ="#{homeProfesorController.borrarHorario(h)}">
+                                            <span class="icon text-white-50">
+                                              <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span class="text">Borrar</span>
+                                        </h:link>                                        
                                     </h:column>
                                      <h:column >
                                         <f:facet name="header"> editar</f:facet>
-                                        <h:commandButton value ="Editar" action="#{homeProfesorController.editar(h)}"></h:commandButton>
-
+                                        
+                                        <h:link class="btn btn-warning btn-icon-split" outcome  ="#{homeProfesorController.editar(h)}">
+                                            <span class="icon text-white-50">
+                                              <i class="fas fa-exclamation-triangle"></i>
+                                            </span>
+                                            <span class="text">Editar</span>
+                                        </h:link>
                                     </h:column>
                                 </h:dataTable>
                             </h:form>
