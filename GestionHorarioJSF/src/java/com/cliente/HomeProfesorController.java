@@ -42,7 +42,7 @@ public class HomeProfesorController implements Serializable {
         gb.realizaConexion();
     }
 
-    public void insertarHorario(Horario h, Profesor p) {
+    public String insertarHorario(Horario h, Profesor p) {
         boolean error = p.comprobarColision(h);
         if (!error) {
             String sql = "insert into horario (id_horario, dia, hora_inicio, hora_fin) values "
@@ -52,6 +52,7 @@ public class HomeProfesorController implements Serializable {
             sql = "insert into profesorhorario values(" + h.getId() + "," + p.getCedula()+"1" + ")";
             gb.executeQ(sql);
         }
+        return "HomeProfesor?faces-redirect=true";
     }
     
     
@@ -177,10 +178,11 @@ public class HomeProfesorController implements Serializable {
         return clasesAceptadas;
     }
     
-    public void borrarHorario(Horario h) {
+    public String borrarHorario(Horario h) {
         gb.executeQ("delete from profesorhorario h  where h.id_horario = " + h.getId());
 
         gb.executeQ("delete from horario h  where h.id_horario = " + h.getId() );
+        return "HomeProfesor?faces-redirect=true";
     }
 
     public String editar(Horario h) {
