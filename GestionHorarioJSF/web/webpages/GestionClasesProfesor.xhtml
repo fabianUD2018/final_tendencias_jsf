@@ -14,87 +14,245 @@
     </h:head>
     <h:body id="page-top">
         <c:if test = "${profesor.sesion}">
-            <h:form>
-                <h:dataTable value ="#{homeProfesorController.solicitadas}" var="c">
+            <div id="wrapper">
 
-                        <h:column>
-                        <f:facet name="header">ID</f:facet>
-                                #{c.id}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"> Cliente</f:facet>
-                                #{c.cliente.nombre}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Hora inicio</f:facet>
-                                #{c.hora_inicio}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Hora fin</f:facet>
-                                #{c.hora_fin}
-                        </h:column>    
-                        <h:column>
-                            <f:facet name="header">Direccion</f:facet>
-                                #{c.direccion}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Estado</f:facet>
-                                #{c.reserva}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Materia</f:facet>
-                                #{c.materia}
-                        </h:column>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                        <h:column >
-                            <f:facet name="header"> Aceptar</f:facet>
-                                <h:commandButton value ="Aceptar" action="#{homeProfesorController.aceptarClase(c,p)}"></h:commandButton>
-                        </h:column>
-                         <h:column >
-                            <f:facet name="header"> Rechazar</f:facet> 
-                                <h:commandButton value ="Rechazar" action="#{homeProfesorController.rechazarClase(c,p)}"></h:commandButton>
-                        </h:column>
+      <!-- Sidebar - Brand -->
+      <h:link class="sidebar-brand d-flex align-items-center justify-content-center"  outcome  ="index">
+          <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Leherer</div>
+      </h:link>
+      
 
-            </h:dataTable>
-            </h:form>
-            <h:form>
-                <h:dataTable value ="#{homeProfesorController.aceptadas}" var="c">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      </hr>
 
-                        <h:column>
-                        <f:facet name="header">ID</f:facet>
-                                #{c.id}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"> Cliente</f:facet>
-                                #{c.cliente.nombre}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Hora inicio</f:facet>
-                                #{c.hora_inicio}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Hora fin</f:facet>
-                                #{c.hora_fin}
-                        </h:column>    
-                        <h:column>
-                            <f:facet name="header">Direccion</f:facet>
-                                #{c.direccion}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Estado</f:facet>
-                                #{c.reserva}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Materia</f:facet>
-                                #{c.materia}
-                        </h:column>
+      <!-- Nav Item - Dashboard -->
+      
 
-                        <h:column >
-                            <f:facet name="header"> Cancelar</f:facet>
-                                <h:commandButton value ="Cancelar" action="#{homeProfesorController.cancelarClase(c,p)}"></h:commandButton>
-                        </h:column>
-            </h:dataTable>
-            </h:form>
+      <!-- Nav Item - Charts -->
+     
+      <li class="nav-item">  
+        <h:link class="nav-link"  outcome  ="HomeProfesor">
+            <i class="fas fa-calendar-alt"></i>
+            <span>  Horarios</span>
+        </h:link>            
+      </li>
+      <li class="nav-item">  
+        <h:link class="nav-link"  outcome  ="GestionClasesProfesor">
+            <i class="far fa-plus-square"></i>
+            <span>  Clases</span>
+        </h:link>            
+      </li>
+      
+
+      
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+           
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Profesor</span>
+                <img class="img-profile rounded-circle" src="https://cdn.icon-icons.com/icons2/300/PNG/256/person-icon_31846.png"></img>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-item"></div>
+                <h:link class="dropdown-item"  outcome  ="index">                    
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Salir
+                </h:link>                
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Clases solicitadas</h6>
+                            
+                        </div>
+                         <div class="card-body">
+                            <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable class="table table-bordered" value ="#{homeProfesorController.solicitadas}" var="c">
+                                    <h:column>
+                                    <f:facet name="header">ID</f:facet>
+                                            #{c.id}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"> Cliente</f:facet>
+                                            #{c.cliente.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Hora inicio</f:facet>
+                                            #{c.hora_inicio}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Hora fin</f:facet>
+                                            #{c.hora_fin}
+                                    </h:column>    
+                                    <h:column>
+                                        <f:facet name="header">Direccion</f:facet>
+                                            #{c.direccion}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Estado</f:facet>
+                                            #{c.reserva}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Materia</f:facet>
+                                            #{c.materia}
+                                    </h:column>
+
+                                    <h:column >
+                                        <f:facet name="header"> Aceptar</f:facet>
+                                            <h:commandButton value ="Aceptar" action="#{homeProfesorController.aceptarClase(c,p)}"></h:commandButton>
+                                    </h:column>
+                                     <h:column >
+                                        <f:facet name="header"> Rechazar</f:facet> 
+                                            <h:commandButton value ="Rechazar" action="#{homeProfesorController.rechazarClase(c,p)}"></h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Clases programadas</h6>
+                            
+                        </div>
+                         <div class="card-body">
+                            <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable class="table table-bordered" value ="#{homeProfesorController.aceptadas}" var="c">
+                                    <h:column>
+                                    <f:facet name="header">ID</f:facet>
+                                            #{c.id}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"> Cliente</f:facet>
+                                            #{c.cliente.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Hora inicio</f:facet>
+                                            #{c.hora_inicio}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Hora fin</f:facet>
+                                            #{c.hora_fin}
+                                    </h:column>    
+                                    <h:column>
+                                        <f:facet name="header">Direccion</f:facet>
+                                            #{c.direccion}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Estado</f:facet>
+                                            #{c.reserva}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Materia</f:facet>
+                                            #{c.materia}
+                                    </h:column>
+
+                                    <h:column >
+                                        <f:facet name="header"> Cancelar</f:facet>
+                                            <h:commandButton value ="Cancelar" action="#{homeProfesorController.cancelarClase(c,p)}"></h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+    
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
+  
+        
+        </div>
+            
         </c:if>
         <c:if test = "${!profesor.sesion}">
             <h:outputLabel value ="Usted aun no inicia sesion, inicie sesion por favor"></h:outputLabel>

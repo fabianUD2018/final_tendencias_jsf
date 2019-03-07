@@ -4,31 +4,178 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
+        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"></link>
+        <link href="../https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template-->
+        <link href="../css/sb-admin-2.min.css" rel="stylesheet"></link>
     </h:head>
     <h:body>
-        <h:form>
-            <div class="form-group">
-                <h:outputLabel value ="ID del horario (despues lo quito XD)"></h:outputLabel>
-                <h:inputText value ="#{editarH.id}" id ="id"></h:inputText>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value ="Dia de la semana"></h:outputLabel>
-                <h:inputText value ="#{editarH.dia}" id ="dia"></h:inputText>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+        <div id="wrapper">
 
-                <h:inputText value ="#{editarH.horaInicio}" id ="horaInicio"></h:inputText>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value ="Hora fin lo mismo del anterior"></h:outputLabel>
-                <h:inputText value ="#{editarH.horaFin}" id ="horaFin"></h:inputText>
-            </div>
-            <div class="form-group">
-                <h:commandButton class="btn btn-primary" value ="aceptar" action ="#{homeProfesorController.updateHorary(editarH, profesor)}"></h:commandButton>
-            </div>
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-        </h:form>    
+      <!-- Sidebar - Brand -->
+      <h:link class="sidebar-brand d-flex align-items-center justify-content-center"  outcome  ="index">
+          <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Leherer</div>
+      </h:link>
+      
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+      </hr>
+
+      <!-- Nav Item - Dashboard -->
+      
+
+      <!-- Nav Item - Charts -->
+     
+      <li class="nav-item">  
+        <h:link class="nav-link"  outcome  ="HomeProfesor">
+            <i class="fas fa-calendar-alt"></i>
+            <span>  Horarios</span>
+        </h:link>            
+      </li>
+      <li class="nav-item">  
+        <h:link class="nav-link"  outcome  ="GestionClasesProfesor">
+            <i class="far fa-plus-square"></i>
+            <span>  Clases</span>
+        </h:link>            
+      </li>
+      
+
+      
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+           
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Profesor</span>
+                <img class="img-profile rounded-circle" src="https://cdn.icon-icons.com/icons2/300/PNG/256/person-icon_31846.png"></img>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <div class="dropdown-item"></div>
+                <h:link class="dropdown-item"  outcome  ="index">                    
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Salir
+                </h:link>                
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Modificar Horario</h6>
+                            
+                        </div>
+                         <div class="card-body">
+                            <div>  
+                                <h:form>
+                                    <div class="form-group">
+                                        <h:outputLabel value ="ID del horario (despues lo quito XD)"></h:outputLabel>
+                                        <h:inputText class="form-control form-control-user" value ="#{editarH.id}" id ="id"></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value ="Dia de la semana"></h:outputLabel>
+                                        <h:inputText class="form-control form-control-user" value ="#{editarH.dia}" id ="dia"></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+
+                                        <h:inputText class="form-control form-control-user" value ="#{editarH.horaInicio}" id ="horaInicio"></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value ="Hora fin lo mismo del anterior"></h:outputLabel>
+                                        <h:inputText class="form-control form-control-user" value ="#{editarH.horaFin}" id ="horaFin"></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:commandButton class="btn btn-primary btn-user btn-block" value ="aceptar" action ="#{homeProfesorController.updateHorary(editarH, profesor)}"></h:commandButton>
+                                    </div>
+
+                                </h:form>  
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+    
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../js/demo/chart-area-demo.js"></script>
+  <script src="../js/demo/chart-pie-demo.js"></script>
+  
+        
+        </div>
+          
     </h:body>
 
 </html>
