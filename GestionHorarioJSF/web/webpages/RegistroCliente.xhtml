@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <link rel ="stylesheet" type="text/css" href="../css/bootstrap.min.css"></link>
+    <h:head>
+        <title>TODO supply a title</title>
+        <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"></link>
+            <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"></link>
+
+        <!-- Custom styles for this template-->
+        <link href="../css/sb-admin-2.min.css" rel="stylesheet"></link>
+
+    </h:head>
+    
+    <h:body class="bg-gradient-primary">
+        <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Crear Cliente</h1>
+              </div>
+                <h:form class="user">                       
+                        
+                        <div class="form-group">
+                            <h:outputLabel  value ="Ingrese su numero de cedula"></h:outputLabel>
+                            <h:inputText class="form-control form-control-user" required ="true"  value ="#{cliente.cedula}" id ="id"></h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel  value ="Ingrese su nombre"></h:outputLabel>
+                            <h:inputText required ="true" class="form-control form-control-user" value ="#{cliente.nombre}" id ="nombre"></h:inputText>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel  value ="Ingrese su edad"></h:outputLabel>
+                            <h:inputText class="form-control form-control-user" value ="#{cliente.edad}" id ="edad"></h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel  value ="Ingrese su numero de celular"></h:outputLabel>
+                            <h:inputText class="form-control form-control-user" value ="#{cliente.celular}" id ="celular"></h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel  value ="Icuentenos algo sobre usted"></h:outputLabel>
+                            <h:inputText  class="form-control form-control-user" value ="#{cliente.detalles}" id ="detalles"></h:inputText>
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel  value ="Ingrese su password"></h:outputLabel>
+                            <h:inputText class="form-control form-control-user" value ="#{cliente.pass}" id ="pass"></h:inputText>
+                        </div>
+
+
+                        <h:commandButton   class="btn btn-primary btn-user btn-block" value ="Registrar" action ="#{registroClienteController.registrarCliente(cliente)}"></h:commandButton>
+                    </h:form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+        
+    </h:body>
+</html>

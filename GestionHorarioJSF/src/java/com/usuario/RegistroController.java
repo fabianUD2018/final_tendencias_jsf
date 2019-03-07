@@ -34,7 +34,7 @@ public class RegistroController implements Serializable {
 
     }
 
-    public void registrarCliente(Cliente c) {
+    public String registrarCliente(Cliente c) {
         String sql = "insert into persona  values "
                 + "(" + c.getCedula() + ", '" + c.getNombre() + "', " + c.getCelular()+ ",'" +c.getPass()+ "'," + c.getEdad() + ")";
         System.out.println(sql);
@@ -44,9 +44,10 @@ public class RegistroController implements Serializable {
         sql = "insert into cliente values  ("+ c.getCedula()+"1" +", "+ c.getCedula() +" , '"+c.getDetalles()+"')";
         System.out.println(sql);
         gb.executeQ(sql);
+        return "index?faces-redirect=true";
     }
     
-    public void registrarProfesor (Profesor c){
+    public String registrarProfesor (Profesor c){
         String[] materias = c.getDetalles().split(",");
         ResultSet st;
         
@@ -76,6 +77,7 @@ public class RegistroController implements Serializable {
                 Logger.getLogger(RegistroController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return "index?faces-redirect=true";
         
     }
     
@@ -97,7 +99,7 @@ public class RegistroController implements Serializable {
         try {
             if (st.next()){
             c.setSesion(true);
-                 return "webpages/HomeProfesor";
+                 return "HomeProfesor";
             }else{
                 return "index";
             }
@@ -115,7 +117,7 @@ public class RegistroController implements Serializable {
         try {
             if (st.next()){
                  c.setSesion(true);
-                 return "webpages/HomeCliente";//cambiar por donde deba redirigir al cliente
+                 return "HomeCliente";//cambiar por donde deba redirigir al cliente
             }else{
                 return "index";
             }   
@@ -136,5 +138,7 @@ public class RegistroController implements Serializable {
             System.out.println("lesto");
             return 0;
         }
-    }   
+    }  
+    
+   
 }
