@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    ${homeClienteController.cargarClases(cliente)}
+    <h:head>
+        <title>Clases</title>
+    </h:head>
+    <h:body>
+        <c:if test = "${cliente.sesion}">
+            Solicitadas
+            <h:form>
+                <h:dataTable value ="#{homeClienteController.solicitadas}" var="c">
+
+                        <h:column>
+                        <f:facet name="header">ID</f:facet>
+                                #{c.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Profesor</f:facet>
+                                #{c.profesor.nombre}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hora inicio</f:facet>
+                                #{c.hora_inicio}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hora fin</f:facet>
+                                #{c.hora_fin}
+                        </h:column>    
+                        <h:column>
+                            <f:facet name="header">Direccion</f:facet>
+                                #{c.direccion}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Estado</f:facet>
+                                #{c.reserva}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Materia</f:facet>
+                                #{c.materia}
+                        </h:column>
+
+                
+                         <h:column >
+                            <f:facet name="header"> Cancelar</f:facet> 
+                                <h:commandButton value ="Cancelar" action="#{homeClienteController.cancelarClase(c)}"></h:commandButton>
+                        </h:column>
+
+            </h:dataTable>
+            </h:form>
+            Reservadas
+            <h:form>
+                <h:dataTable value ="#{homeClienteController.aceptadas}" var="c">
+
+                        <h:column>
+                        <f:facet name="header">ID</f:facet>
+                                #{c.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"> Profesor</f:facet>
+                                #{c.profesor.nombre}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hora inicio</f:facet>
+                                #{c.hora_inicio}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hora fin</f:facet>
+                                #{c.hora_fin}
+                        </h:column>    
+                        <h:column>
+                            <f:facet name="header">Direccion</f:facet>
+                                #{c.direccion}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Estado</f:facet>
+                                #{c.reserva}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Materia</f:facet>
+                                #{c.materia}
+                        </h:column>
+
+                        <h:column >
+                            <f:facet name="header"> Cancelar</f:facet>
+                                <h:commandButton value ="Cancelar" action="#{homeClienteController.cancelarClase(c)}"></h:commandButton>
+                        </h:column>
+            </h:dataTable>
+            </h:form>
+        </c:if>
+        <c:if test = "${!cliente.sesion}">
+            <h:outputLabel value ="Usted aun no inicia sesion, inicie sesion por favor"></h:outputLabel>
+        </c:if>
+    </h:body>
+</html>

@@ -32,7 +32,8 @@ public class HomeClienteController implements Serializable {
 
     public HomeClienteController() {
         
-        gb = GestorBaseDatos.obtenerGestor();  
+        gb = GestorBaseDatos.obtenerGestor();
+        clases = new ArrayList<>();
         gb.realizaConexion();
         
     }
@@ -129,8 +130,87 @@ public class HomeClienteController implements Serializable {
         }
     }
     
-    public void cargarClases(Cliente c){
-        
+    public void cargarClases(Cliente p){
+        clases.clear();
+        if (p.isSesion()) {
+            String sql = "select * from clase, cliente where clase.id_cliente =cliente.id_cliente and cliente.id_cliente="+p.getCedula()+"1";
+            System.out.println(sql);
+            GestorBaseDatos gb2= new GestorBaseDatos();
+            GestorBaseDatos gb3= new GestorBaseDatos();
+            gb2.realizaConexion();
+            gb3.realizaConexion();
+            ResultSet st = gb.read(sql);
+            ResultSet st2;
+            ResultSet st3;
+            try {
+                while (st.next()){
+                    Clase temp = new Clase();
+                    temp.setCliente(p);
+                    
+                    temp.setId(st.getInt(1));           
+                    temp.setFecha(st.getString(5));
+                    temp.setHora_inicio(st.getString(6));
+                    temp.setHora_fin(st.getString(7));
+                    temp.setDetalles(st.getString(8));
+                    temp.setReserva(st.getString(9));
+                    temp.setColegio(st.getString(10));
+                    temp.setNombre_alumno(st.getString(11));
+                    temp.setDireccion(st.getString(12));
+                    String idProfesor = st.getString("id_profesor");
+                    
+                    sql ="select  nombre from materia where id_materia='"+st.getString(4)+"'";
+                    System.out.println(sql);
+                    st2 = gb2.read(sql);
+                    st2.next();
+                    temp.setMateria(st2.getString(1));
+
+                    Profesor tempc= new Profesor();
+                    sql ="select * from profesor, persona where profesor.id_cedula=persona.id_cedula and id_profesor='"+idProfesor+"'";
+                    st3 = gb3.read(sql);
+                    st3.next();
+                    System.out.println(sql);
+                    tempc.setCedula(st3.getInt(2));                    
+                    tempc.setNombre(st3.getString(5));
+                    tempc.setEdad(st3.getInt(8));
+                    tempc.setCelular(st3.getInt(6));
+
+                    temp.setProfesor(tempc);
+                    
+                    clases.add(temp);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(HomeProfesorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public ArrayList<Clase> getSolicitadas(){
+        ArrayList<Clase> clasesAsignadas= new ArrayList();
+        for (Clase clase : clases){
+            if(clase.isSolicitada()){
+            clasesAsignadas.add(clase);
+            }
+        }
+        return clasesAsignadas;
+    }
+    
+    public ArrayList<Clase> getAceptadas(){
+        ArrayList<Clase> clasesAceptadas= new ArrayList();
+        for (Clase clase : clases){
+            if(clase.isAceptada()){
+            clasesAceptadas.add(clase);
+            }
+        }
+        return clasesAceptadas;
+    }
+    
+    public String cancelarClase(Clase c){
+        if(c.isSolicitada()){
+            String sql="update clase set reserva='cancelada' where id_clase="+c.getId();
+            gb.executeQ(sql);
+            return "ClasesCliente?faces-redirect=true";
+        }
+        return "ClasesCliente?faces-redirect=true";
     }
     
     

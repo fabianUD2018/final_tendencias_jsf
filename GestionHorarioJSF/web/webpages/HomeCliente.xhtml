@@ -60,9 +60,14 @@ and open the template in the editor.
                     <h:inputText value ="#{clase.direccion}" id ="direccion"></h:inputText>
                 </div>
                 <div class="form-group">
-                    #{clase.setProfesor(profesor)}
+                    
                     <h:commandButton class="btn btn-primary" value ="Registrar Clase" action ="#{homeClienteController.crearClase(horario, clase, profesor, cliente)}"></h:commandButton>
+                </div> 
+                <div class="form-group">
+                    
+                    <h:commandButton class="btn btn-primary" value ="Ver Horario" action ="ClasesCliente"></h:commandButton>
                 </div>
+                
 
             </h:form>
 
