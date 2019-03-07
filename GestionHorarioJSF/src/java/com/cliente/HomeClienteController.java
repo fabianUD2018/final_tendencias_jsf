@@ -40,6 +40,8 @@ public class HomeClienteController implements Serializable {
 
     
     public String crearClase(Horario h, Clase c, Profesor p,Cliente cl){
+        p.setCedula(obtenerIndiceP(p.getNombre()));
+        System.out.println("asdasdasdasd"+p.getCedula());
         c.setProfesor(p);
         boolean disponibilidad = false;
         System.out.println(""+ c.getMateria());
@@ -49,15 +51,16 @@ public class HomeClienteController implements Serializable {
         String sql = "select h.id_horario, ma.id_materia " +
             "from horario h, profesorhorario ph, materia ma, materiaProfesor mp " +
             "where " +
-            "h.id_horario = ph.id_horario and ph.id_profesor = "+c.getProfesor().getCedula()+"1 " +
+            "h.id_horario = ph.id_horario and ph.id_profesor = "+c.getProfesor().getCedula()+" " +
             "and  h.hora_inicio <= '"+h.getHoraInicio()+"' and h.hora_fin >= '"+h.getHoraFin()+"' and h.dia = '"+h.getDia()+"' " +
-            "and ma.id_materia = mp.id_materia and mp.id_profesor = "+c.getProfesor().getCedula()+"1 and ma.nombre = '"+c.getMateria()+"'";
+            "and ma.id_materia = mp.id_materia and mp.id_profesor = "+c.getProfesor().getCedula()+" and ma.nombre = '"+c.getMateria()+"'";
         ResultSet st = gb.read(sql);
 
         try {
                 while (st.next()) {
                      System.out.println(st.getString("id_horario"));
                      disponibilidad = true;
+                     System.out.println("tengo horario dispobible");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(HomeProfesorController.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,7 +98,7 @@ public class HomeClienteController implements Serializable {
             int idMateria = obtenerIndiceM("materia", c.getMateria());
             int llaveP = obtenerIndice("clase", "clase") + 1 ;
               String sql3="insert into clase values ( "+llaveP+" , "+c.getProfesor().getCedula() +
-                "1 , "+ cl.getCedula() + "1 , "+ idMateria + " , '"+ c.getFecha()+ "' , '"+
+                " , "+ cl.getCedula() + "1 , "+ idMateria + " , '"+ c.getFecha()+ "' , '"+
                 h.getHoraInicio()+ "' , '"+ h.getHoraFin()+ "' , '"+ c.getDetalles()+ "' , "+
                 "'solicitada', '"+ c.getColegio()+ "' , '"+ c.getNombre_alumno()+ "' , '" +
                 c.getDireccion()+ "' )";
@@ -124,6 +127,18 @@ public class HomeClienteController implements Serializable {
             st.next();
 
             return Integer.parseInt(st.getString("id_materia"));
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeClienteController.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
+    public int obtenerIndiceP(String codigo) {
+        ResultSet st = gb.read("select * from profesor, persona where persona.nombre = '"+codigo+"' and"
+                + " profesor.id_cedula = persona.id_cedula");
+        try {
+            st.next();
+
+            return Integer.parseInt(st.getString("id_profesor"));
         } catch (SQLException ex) {
             Logger.getLogger(HomeClienteController.class.getName()).log(Level.SEVERE, null, ex);
             return 0;

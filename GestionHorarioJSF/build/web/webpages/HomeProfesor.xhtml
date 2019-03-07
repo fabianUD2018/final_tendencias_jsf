@@ -112,22 +112,18 @@
                         </div>
                          <div class="card-body">
                             <div>  
-                                <h:form class="user">
-                                    <div class="form-group">
-                                        <h:outputLabel value ="ID del horario (despues lo quito XD)"></h:outputLabel>
-                                        <h:inputText class="form-control form-control-user" value ="#{horario.id}" id ="id"></h:inputText>
-                                    </div>
+                                <h:form class="user">                                   
                                     <div class="form-group">
                                         <h:outputLabel value ="Dia de la semana"></h:outputLabel>
                                         <h:inputText class="form-control form-control-user" value ="#{horario.dia}" id ="dia"></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+                                        <h:outputLabel value ="Hora de inicio en formato HH:MM "></h:outputLabel>
 
                                         <h:inputText class="form-control form-control-user" value ="#{horario.horaInicio}" id ="horaInicio"></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value ="Hora fin lo mismo del anterior"></h:outputLabel>
+                                        <h:outputLabel value ="Hora fin en formato HH:MM "></h:outputLabel>
                                         <h:inputText class="form-control form-control-user" value ="#{horario.horaFin}" id ="horaFin"></h:inputText>
                                     </div>
                                     <div class="form-group">

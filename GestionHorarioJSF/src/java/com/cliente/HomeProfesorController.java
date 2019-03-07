@@ -43,6 +43,7 @@ public class HomeProfesorController implements Serializable {
     }
 
     public String insertarHorario(Horario h, Profesor p) {
+        h.setId(this.obtenerIndice("horario", "horario") +1);
         boolean error = p.comprobarColision(h);
         if (!error) {
             String sql = "insert into horario (id_horario, dia, hora_inicio, hora_fin) values "
@@ -209,6 +210,17 @@ public class HomeProfesorController implements Serializable {
      */
     public ArrayList<Clase> getClases() {
         return clases;
+    }
+    public int obtenerIndice(String entidad, String codigo) {
+        ResultSet st = gb.read("select * from " + entidad + " ORDER BY id_" + codigo + " DESC LIMIT 1");
+        try {
+            st.next();
+
+            return Integer.parseInt(st.getString("id_" + codigo));
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeClienteController.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
     }
 
 }

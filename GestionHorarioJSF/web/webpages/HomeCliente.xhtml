@@ -121,19 +121,19 @@ and open the template in the editor.
                                 <h:form class="user">
                                     <div class="form-group">
                                         <h:outputLabel value ="Nombre del profesor"></h:outputLabel>
-                                        <h:inputText class="form-control" value ="#{profesor.cedula}" id ="id"></h:inputText>
+                                        <h:inputText class="form-control" value ="#{profesor.nombre}" id ="id"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel value ="Dia de la semana"></h:outputLabel>
                                         <h:inputText class="form-control" value ="#{horario.dia}" id ="dia"></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value ="Hora de inicio en formato 05:00 por ejemplo"></h:outputLabel>
+                                        <h:outputLabel value ="Hora de inicio en formato HH:MM "></h:outputLabel>
 
                                         <h:inputText class="form-control" value ="#{horario.horaInicio}" id ="horaInicio"></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel value ="Hora fin lo mismo del anterior"></h:outputLabel>
+                                        <h:outputLabel value ="Hora fin en formato HH:MM "></h:outputLabel>
                                         <h:inputText class="form-control" value ="#{horario.horaFin}" id ="horaFin"></h:inputText>
                                     </div>
                                     <div class="form-group">
@@ -163,11 +163,7 @@ and open the template in the editor.
                                     <div class="form-group">
 
                                         <h:commandButton class="btn btn-primary btn-user btn-block" value ="Registrar Clase" action ="#{homeClienteController.crearClase(horario, clase, profesor, cliente)}"></h:commandButton>
-                                    </div> 
-                                    <div class="form-group">
-
-                                        <h:commandButton class="btn btn-primary" value ="Ver Horario" action ="ClasesCliente"></h:commandButton>
-                                    </div>
+                                    </div>                                     
                                 </h:form>
                             </div>
                          </div>
